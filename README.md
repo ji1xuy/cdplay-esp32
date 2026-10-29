@@ -1,12 +1,13 @@
 ## はじめに
 darekasanさんが公開されたcdplay-esp32プロジェクトのお陰で実現できました。darekasanさんに感謝です。
 
-元のコードからの主な変更点★　(以下、変更・追加した部分は★印をつけてあります)  
+元のコードからの主な変更点
 - グラフィックLCDからWINSTAR製のキャラクタOLED(16文字X2行)に変更  
 - アルバム名・曲名情報の表示を漢字ではなく1byte文字に変更  
 - アルバム名・曲名情報の取得先を変更(freedbtest.dyndns.org　⇒　musicbrainz.org)
 - 取得したアルバム名・曲名情報をESP32-S3に内蔵のファイルシステムに保存する機能を追加
 - ドライブによっては回転音が大きく気になるため、TOC読み取り後に2倍速に設定するようにした  
+##
 
 # cdplay-esp32
 ESP32-S3にUSB接続のCD/DVD/BDドライブとI2S DACを接続し、音楽CDを再生するプロジェクトです。
@@ -15,7 +16,7 @@ USB Mass Storage Bulk-Only Transport（BOT）とSCSI/MMCコマンドをESP32-S3�
 
 Wi-Fi経由でMusicBrainzへ問い合わせ、アルバム名と曲名を取得してOLEDへ表示します。日本語には非対応です。長い曲名の横スクロールに対応しています。
 
-## 主な機能
+## 主な機能 　(以下、変更・追加した部分は★印をつけてあります)  
 
 - USB CD/DVD/BDドライブの検出
 - SCSI INQUIRY、TEST UNIT READY、REQUEST SENSE
@@ -41,7 +42,7 @@ Wi-Fi経由でMusicBrainzへ問い合わせ、アルバム名と曲名を取得�
 
 - Freenove ESP32-S3 8MBフラッシュ　8MB PSRAM
 - IDEまたはSATA接続の光学ドライブ
-  - 動作確認: SONY NEC Optiarc　AD-7170A、PLEXTORのPX820A、SATAドライブ
+  - 動作確認: (IDE)SONY NEC Optiarc　AD-7170A、PLEXTORのPX820A、(SATA)LG GH24NSC0
 - IDE,SATA-USB変換ケーブル
 - 光学ドライブへの給電手段（パワースプリッターケーブルなど）
 - I2S DAC
@@ -61,6 +62,7 @@ Wi-Fi経由でMusicBrainzへ問い合わせ、アルバム名と曲名を取得�
 | USB D- | GPIO19 |
 | USB D+ | GPIO20 |
 
+ESP32-S3のUSB OTGコネクタは使用せず、GPIO19と20から世俗する
 光学ドライブはESP32-S3から直接給電しないこと。
 
 ### I2S DAC
