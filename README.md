@@ -1,10 +1,12 @@
 # cdplay-esp32
 
-## 2026/10/29 README.mdがFork元の内容からほとんど直せていません。少しずつ直していきます。　
 元のコードからの主な変更点  
 - グラフィックLCDからWINSTAR製のキャラクタOLED(16文字X2行)に変更  
 - タイトル情報の表示を漢字ではなく1byte文字に変更  
-- cddbLookupTask()関数　データの取得先を変更(freedbtest.dyndns.org　⇒　musicbrainz.org)  
+- cddbLookupTask()関数　データの取得先を変更(freedbtest.dyndns.org　⇒　musicbrainz.org)
+    
+## 2026/10/29 README.mdがFork元の内容からほとんど直せていません。少しずつ直していきます。　
+
 ##
 
 ESP32-S3にUSB接続のCD/DVD/BDドライブとI2S DACを接続し、音楽CDを再生するプロジェクトです。
