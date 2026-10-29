@@ -2,4 +2,4 @@
 
 static constexpr char WIFI_SSID[] = "your-2.4GHz-ssid";
 static constexpr char WIFI_PASSWORD[] = "your-password";
-#define MAILADDRESS "your-mail-address"
+#define MAILADDRESS "your-mail-address"  // MusicBrainzのサーバーにアクセスする際に使用します
