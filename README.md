@@ -115,6 +115,7 @@ Wi-Fi経由でfreedb日本語へ問い合わせ、アルバム名と曲名を取
 
 static constexpr char WIFI_SSID[] = "your-2.4GHz-ssid";
 static constexpr char WIFI_PASSWORD[] = "your-password";
+#define MAILADDRESS "your-mail-address" // MusicBrainzのサーバーにアクセスする際に使用します
 ```
 
 `secrets.h`は`.gitignore`に登録されているため、通常はGitHubへ公開されません。コミット前に認証情報が含まれていないことを必ず確認してください。
