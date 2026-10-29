@@ -1,4 +1,5 @@
 # cdplay-esp32
+darekasanさんが公開されたcdplay-esp32プロジェクトのお陰で実現できました。darekasanさんに感謝です。
 
 元のコードからの主な変更点  
 - グラフィックLCDからWINSTAR製のキャラクタOLED(16文字X2行)に変更  
