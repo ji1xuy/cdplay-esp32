@@ -5,9 +5,7 @@
 - タイトル情報の表示を漢字ではなく1byte文字に変更  
 - cddbLookupTask()関数　データの取得先を変更(freedbtest.dyndns.org　⇒　musicbrainz.org)
     
-## 2026/10/29 README.mdがFork元の内容からほとんど直せていません。少しずつ直していきます。　
-
-##
+## 2026/10/29 ここから下はFork元の内容からほとんど直せていません。少しずつ直していきます。　
 
 ESP32-S3にUSB接続のCD/DVD/BDドライブとI2S DACを接続し、音楽CDを再生するプロジェクトです。
 
