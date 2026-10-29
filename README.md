@@ -1,4 +1,4 @@
-# cdplay-esp32
+## はじめに
 darekasanさんが公開されたcdplay-esp32プロジェクトのお陰で実現できました。darekasanさんに感謝です。
 
 元のコードからの主な変更点★　(以下、変更・追加した部分は★印をつけてあります)  
@@ -7,7 +7,8 @@ darekasanさんが公開されたcdplay-esp32プロジェクトのお陰で実�
 - アルバム名・曲名情報の取得先を変更(freedbtest.dyndns.org　⇒　musicbrainz.org)
 - 取得したアルバム名・曲名情報をESP32-S3に内蔵のファイルシステムに保存する機能を追加
 - ドライブによっては回転音が大きく気になるため、TOC読み取り後に2倍速に設定するようにした  
-##
+
+# cdplay-esp32
 ESP32-S3にUSB接続のCD/DVD/BDドライブとI2S DACを接続し、音楽CDを再生するプロジェクトです。
 
 USB Mass Storage Bulk-Only Transport（BOT）とSCSI/MMCコマンドをESP32-S3上で直接扱い、CD-DAの2352バイト生セクタを読み出してI2Sへ出力します。TOCは頭出しとトラック番号表示に使用し、通常再生はディスク全体を連続ストリームとして扱うため、曲間を途切れさせず再生できます。
