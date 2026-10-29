@@ -2,7 +2,7 @@
 
 ## 2026/10/29 ファイルは入れ替えました。README.mdを少しずつ直していきます。　
 元のコードからの変更点  
-- グラフィックLCDからキャラクタOLED(16文字X2行)に変更  
+- グラフィックLCDからWINSTAR製のキャラクタOLED(16文字X2行)に変更  
 - タイトル情報の表示を漢字ではなく1byte文字に変更  
 - cddbLookupTask()関数　データの取得先を変更(freedbtest.dyndns.org　⇒　musicbrainz.org)  
 ##
