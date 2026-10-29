@@ -1,5 +1,12 @@
 # cdplay-esp32
 
+## 現在、オリジナルと同じ内容になっていますが、順次入れ替えていきます。　
+元のコードからの変更点  
+- グラフィックLCDからキャラクタOLED(16文字X2行)に変更  
+- タイトル情報の表示を漢字ではなく1byte文字に変更  
+- cddbLookupTask()関数　データの取得先を変更(freedbtest.dyndns.org　⇒　musicbrainz.org)  
+##
+
 ESP32-S3にUSB接続のCD/DVD/BDドライブとI2S DACを接続し、音楽CDを再生するプロジェクトです。
 
 USB Mass Storage Bulk-Only Transport（BOT）とSCSI/MMCコマンドをESP32-S3上で直接扱い、CD-DAの2352バイト生セクタを読み出してI2Sへ出力します。TOCは頭出しとトラック番号表示に使用し、通常再生はディスク全体を連続ストリームとして扱うため、曲間を途切れさせず再生できます。
