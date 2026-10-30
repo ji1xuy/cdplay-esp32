@@ -62,7 +62,8 @@ Wi-Fi経由でMusicBrainzへ問い合わせ、アルバム名と曲名を取得�
 | USB D- | GPIO19 |
 | USB D+ | GPIO20 |
 
-ESP32-S3のUSB OTGコネクタは使用せず、GPIO19と20から世俗する
+ESP32-S3のUSB OTGコネクタは使用せず、GPIO19と20から接続する
+
 光学ドライブはESP32-S3から直接給電しないこと。
 
 ### I2S DAC
