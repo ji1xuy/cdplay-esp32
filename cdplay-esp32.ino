@@ -2,7 +2,7 @@
 //cdplay-esp32
 //https://github.com/darekasan/cdplay-esp32
 #define PRGNAME "cdplay-esp32"
-#define VERSION "ver.20261028.00"
+#define VERSION "ver.20261031.00"
 
 /*
 ・ハードウェア
@@ -2026,25 +2026,30 @@ static void drawUi() {
     return;
   }
 
-  //CDDB候補を表示・選択する
+  //CDDB候補を表示する
   if (uiMode == UiMode::Cddb) {
-    const uint8_t candidateCount = cddbCandidateCount;
-    const uint8_t requestedSelection = cddbCandidateSelection;
-    const uint8_t selected = min(requestedSelection, (uint8_t)(candidateCount - 1));
-    lcd.setCursor(0, 0);
-    snprintf(line, sizeof(line), "%02d:%-13s",
-             selected + 1, cddbCandidates[selected].title.substring(0, 12).c_str());
-    if (deleteDiskInfoProcessing == true) {
-      if (((millis() / 1000) & 1) == 0) {
-        lcd.print(">>>  Delete? <<<");
-      } else {
-        lcd.print(line);
+    if (cddbCandidateCount == 0) { // 20261031.00 追加
+      lcd.setCursor(0, 0);
+      lcd.print("00:             ");
+    } else {
+      const uint8_t candidateCount = cddbCandidateCount;
+      const uint8_t requestedSelection = cddbCandidateSelection;
+      const uint8_t selected = min(requestedSelection, (uint8_t)(candidateCount - 1));
+      lcd.setCursor(0, 0);
+      snprintf(line, sizeof(line), "%02d:%-13s",
+               selected + 1, cddbCandidates[selected].title.substring(0, 12).c_str());
+      if (deleteDiskInfoProcessing == true) {
+        if (((millis() / 1000) & 1) == 0) {
+          lcd.print(">>>  Delete? <<<");
+        } else {
+          lcd.print(line);
+        }
+        lcd.setCursor(0, 1);
+        lcd.print("ACT:Yes/MODE:No ");
+        return;
       }
-      lcd.setCursor(0, 1);
-      lcd.print("ACT:Yes/MODE:No ");
-      return;
-    }
-    lcd.print(line);
+      lcd.print(line);
+    } 
   }
 
   lcd.setCursor(13, 1);
