@@ -2035,9 +2035,9 @@ static void drawUi() {
       const uint8_t candidateCount = cddbCandidateCount;
       const uint8_t requestedSelection = cddbCandidateSelection;
       const uint8_t selected = min(requestedSelection, (uint8_t)(candidateCount - 1));
-      lcd.setCursor(0, 0);
       snprintf(line, sizeof(line), "%02d:%-13s",
                selected + 1, cddbCandidates[selected].title.substring(0, 12).c_str());
+      lcd.setCursor(0, 0);
       if (deleteDiskInfoProcessing == true) {
         if (((millis() / 1000) & 1) == 0) {
           lcd.print(">>>  Delete? <<<");
