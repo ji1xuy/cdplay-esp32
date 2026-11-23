@@ -2,7 +2,7 @@
 //cdplay-esp32
 //https://github.com/darekasan/cdplay-esp32
 #define PRGNAME "cdplay-esp32"
-#define VERSION "ver.20261031.00"
+#define VERSION "ver.20261121.00"
 
 /*
 ・ハードウェア
@@ -11,8 +11,10 @@
 OLED:
  共立電子 WINSTAR OLEDモジュール WEH001602ARPP5N00100 (パラレル4bitモードで使用)
 双方向ロジックレベルコンバーター:
- Amazon　TXS0108E 8チャンネルロジックレベルコンバータ
+ Amazon TXS0108E 8チャンネルロジックレベルコンバータ
 I2Sコンバーター:
+ Amazon CJMCU-4344 CS4344 ステレオオーディオDAC変換モジュール
+ または
  Amazon DAOKAI PCM5102モジュール、I2S IISロスレスデジタルオーディオDACデコーダーモジュール
  SCKとBCKの間のパッド ショート (オープンのままだと、音声出力はされるが手を近づけるとノイズが入る)
  H1L(FLT)  1-L ショート 
@@ -359,7 +361,7 @@ uint8_t underbar[] = {
 // only for seeking and for announcing track-number changes during playback.
 
 static constexpr int I2S_SDIN_PIN = 4;   // PCM5102Aの場合　DIN
-static constexpr int I2S_BCLK_PIN = 5;   // PCM5102Aの場合　BCK
+static constexpr int I2S_SCLK_PIN = 5;   // PCM5102Aの場合　BCK
 static constexpr int I2S_LRCLK_PIN = 6;  // PCM5102Aの場合　LCK
 static constexpr int I2S_MCLK_PIN = 7;   // PCM5102Aの場合　未接続
 
@@ -690,7 +692,7 @@ static bool startI2sAudio() {
     return false;
   }
 
-  i2s.setPins(I2S_BCLK_PIN, I2S_LRCLK_PIN, I2S_SDIN_PIN, -1, I2S_MCLK_PIN);
+  i2s.setPins(I2S_SCLK_PIN, I2S_LRCLK_PIN, I2S_SDIN_PIN, -1, I2S_MCLK_PIN);
   if (!i2s.begin(I2S_MODE_STD, 44100, I2S_DATA_BIT_WIDTH_16BIT, I2S_SLOT_MODE_STEREO, I2S_STD_SLOT_BOTH)) {
     Serial.println("Could not initialize I2S output.");
     vStreamBufferDelete(audioBuffer);
@@ -706,7 +708,7 @@ static bool startI2sAudio() {
     return false;
   }
   Serial.printf("I2S ready: SDIN=%d BCLK=%d LRCLK=%d MCLK=%d, volume=%u%%.\n",
-                I2S_SDIN_PIN, I2S_BCLK_PIN, I2S_LRCLK_PIN, I2S_MCLK_PIN, volumePercent);
+                I2S_SDIN_PIN, I2S_SCLK_PIN, I2S_LRCLK_PIN, I2S_MCLK_PIN, volumePercent);
   return true;
 }
 
@@ -2036,11 +2038,11 @@ static void drawUi() {
       const uint8_t requestedSelection = cddbCandidateSelection;
       const uint8_t selected = min(requestedSelection, (uint8_t)(candidateCount - 1));
       snprintf(line, sizeof(line), "%02d:%-13s",
-               selected + 1, cddbCandidates[selected].title.substring(0, 12).c_str());
+              selected + 1, cddbCandidates[selected].title.substring(0, 12).c_str());
       lcd.setCursor(0, 0);
       if (deleteDiskInfoProcessing == true) {
         if (((millis() / 1000) & 1) == 0) {
-          lcd.print(">>>  Delete? <<<");
+          lcd.print("Delete Title?   ");
         } else {
           lcd.print(line);
         }
@@ -2049,7 +2051,7 @@ static void drawUi() {
         return;
       }
       lcd.print(line);
-    } 
+    }
   }
 
   lcd.setCursor(13, 1);
@@ -2104,7 +2106,7 @@ static void drawUi() {
 
   if (mbdbDiscIdSavedShowMessage == true) {
     lcd.setCursor(0, 0);
-    lcd.print("> Title Saved! <");
+    lcd.print("Title Saved!    ");
     if (millis() - mbdbDiscIdSavedPrevMillis > 1000) {
       mbdbDiscIdSavedShowMessage = false;
     }
